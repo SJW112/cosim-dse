@@ -1,0 +1,62 @@
+    
+   %% functions
+   % Three_phase
+   % Griddata
+   % Powerddata
+   % DSSEConfData
+   % Weightm
+   % calc_Mvector_external
+   % VRIDSSE
+   % Jacobian_m_VRIDSSE
+   % calc_Mvector
+   % calc_hx_VRIDSSE
+   
+%%
+
+% simLength=86400;
+% D=86400;
+text=pwd;
+
+[flag,DSSobj,Text]=DSSStartup_mine;
+
+[NODES, Y, mappingNode2Terminal, ~, ~, ~, homesPerNode] = loadTopologyIEEE13woSwitch_new(DSSobj);
+% Assign loads to Buses
+offset=1;
+    load realpower1260homes-1day.mat
+    load reactivepower1260homes-1day.mat
+
+    [P, Q] = connectLoads2NodesPQ(Pn, Qn, homesPerNode, offset, offset+simLength-1);
+       
+    clear Pn Qn
+
+% Power Flow Calculations
+
+% V(:,t) - bus voltage for all phases (complex vector)
+V = zeros(NODES, simLength);
+
+% I1(:,t) - sender-end current for all phases (complex vector)
+I1 = zeros(NODES, simLength);
+
+% I2(:,t) - receiver-end current for all phases (complex vector)
+I2 = zeros(NODES, simLength);
+
+for i=1:simLength
+    [V(:,i), I1(:,i), I2(:,i)] = runPF(P(:,i), Q(:,i), mappingNode2Terminal, DSSobj);
+
+end
+
+
+
+   %% Rearrange nodes in
+
+   %%
+    IEEE13=struct;
+    IEEE13.P_all=P;
+    IEEE13.Q_all=Q;
+    IEEE13.V_all=Vpu;
+    IEEE13.I_all=I;
+    IEEE13.Y=Y;
+
+    [Vmag,Vph,Vmagtrue,Vphtrue]=Three_phase(IEEE13);
+
+       %% Rearrange nodes out

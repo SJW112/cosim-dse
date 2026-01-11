@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+.env
+
+# Data files (too large for git)
+*.npy
+*.mat
+*.hd5
+*.h5
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Results
+*.log
+CollectorStore.hd5
+
+# Keep directory structure
+!data/IEEE13/.gitkeep
+!data/SIMDSE_IEEE13/.gitkeep

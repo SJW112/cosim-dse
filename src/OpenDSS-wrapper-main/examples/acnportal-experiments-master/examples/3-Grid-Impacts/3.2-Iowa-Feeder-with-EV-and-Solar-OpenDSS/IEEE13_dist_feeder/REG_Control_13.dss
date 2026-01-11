@@ -1,0 +1,7 @@
+
+//This file is to define the parameters of tap changer control for substation transformer.
+ 
+New RegControl.Reg1 bus=bus1.1 Transformer=Reg1 winding=2  vreg=122  band=2  ptratio=20 ctprim=700  R=3   X=9 
+New RegControl.Reg2 bus=bus1.2 Transformer=Reg2 winding=2  vreg=122  band=2  ptratio=20 ctprim=700  R=3   X=9 
+New RegControl.Reg3 bus=bus1.3 Transformer=Reg3 winding=2  vreg=122  band=2  ptratio=20 ctprim=700  R=3   X=9 
+
