@@ -18,7 +18,7 @@ This project is based on the co-simulation platform developed by the **Sustainab
 
 
 ## Caveat
-This project is currently unfinished and paused.
+This project was undertaken to understand the concept of cosimulation between several systems and the author claims no original knowledge of the ideas in this project. This project is currently unfinished and paused.
 
 ## Overview
 
